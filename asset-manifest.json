@@ -1,15 +1,22 @@
 {
   "files": {
-    "main.css": "/smart-story/static/css/main.e6c13ad2.css",
-    "main.js": "/smart-story/static/js/main.19d6e799.js",
+    "main.css": "/smart-story/static/css/main.64f35c50.css",
+    "main.js": "/smart-story/static/js/main.f47eaed9.js",
     "static/js/453.36f43780.chunk.js": "/smart-story/static/js/453.36f43780.chunk.js",
+    "static/media/Inter-italic.var.woff2?v=3.19": "/smart-story/static/media/Inter-italic.var.184ec460d45b3caf5b0b.woff2",
+    "static/media/Inter-roman.var.woff2?v=3.19": "/smart-story/static/media/Inter-roman.var.71b058b66381db72226b.woff2",
+    "static/media/primeicons.svg": "/smart-story/static/media/primeicons.6ed59f962963a4a73af2.svg",
+    "static/media/primeicons.eot": "/smart-story/static/media/primeicons.ff0c4cd79b2ffca2de54.eot",
+    "static/media/primeicons.woff": "/smart-story/static/media/primeicons.8931fda1930c3bd21e96.woff",
+    "static/media/primeicons.ttf": "/smart-story/static/media/primeicons.a5c2a53d1ff7a9ff5933.ttf",
+    "static/media/primeicons.woff2": "/smart-story/static/media/primeicons.024b32cc7bf399b1a847.woff2",
     "index.html": "/smart-story/index.html",
-    "main.e6c13ad2.css.map": "/smart-story/static/css/main.e6c13ad2.css.map",
-    "main.19d6e799.js.map": "/smart-story/static/js/main.19d6e799.js.map",
+    "main.64f35c50.css.map": "/smart-story/static/css/main.64f35c50.css.map",
+    "main.f47eaed9.js.map": "/smart-story/static/js/main.f47eaed9.js.map",
     "453.36f43780.chunk.js.map": "/smart-story/static/js/453.36f43780.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e6c13ad2.css",
-    "static/js/main.19d6e799.js"
+    "static/css/main.64f35c50.css",
+    "static/js/main.f47eaed9.js"
   ]
 }
