@@ -1,5 +1,5 @@
 // src/components/Home.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Container, TextField, Button, Typography, Box } from '@mui/material';
 
@@ -8,6 +8,18 @@ const Home = ({ setApiKey, setSheetId }) => {
   const [sheet_id, setLocalSheetId] = useState('');
   const [api_key, setLocalApiKey] = useState('');
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const storedApiKey = localStorage.getItem('apiKey');
+    if (storedApiKey) {
+      setLocalApiKey(storedApiKey);
+    }
+
+    const storedSheetId = localStorage.getItem('sheetId');
+    if (storedSheetId) {
+      setLocalSheetId(storedSheetId);
+    }
+  }, []);
 
   const handleChangeSheetId = (event) => {
     setLocalSheetId(event.target.value);
@@ -19,9 +31,11 @@ const Home = ({ setApiKey, setSheetId }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    localStorage.setItem('sheetId', sheet_id);
+    localStorage.setItem('apiKey', api_key);
     setSheetId(sheet_id);
     setApiKey(api_key);
-    navigate('/timeline');
+    navigate('timeline');
   };
 
   return (
@@ -34,7 +48,7 @@ const Home = ({ setApiKey, setSheetId }) => {
         minHeight="100vh"
       >
         <Typography variant="h4" gutterBottom>
-          Enter Google Sheets API Key
+          Smart Story
         </Typography>
         <form onSubmit={handleSubmit}>
         <TextField
