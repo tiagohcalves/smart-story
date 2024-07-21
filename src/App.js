@@ -31,7 +31,7 @@ const App = () => {
             Smart Story
           </Typography>
           <Button color="inherit" component={Link} to="/smart-story/timeline">Timeline</Button>
-          <Button color="inherit" component={Link} to="/smart-story/contacts">Contact List</Button>
+          <Button color="inherit" component={Link} to="/smart-story/contacts">Contatos</Button>
         </Toolbar>
       </AppBar>
       <Routes>

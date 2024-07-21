@@ -2,7 +2,9 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Typography, List, ListItem, ListItemText, Box } from '@mui/material';
 import axios from 'axios';
-import { SPREADSHEET_ID, RANGE_CONTACTS } from '../config';
+import { RANGE_CONTACTS } from '../config';
+
+
 
 const ContactList = ({ apiKey, sheetId }) => {
   const [contacts, setContacts] = useState([]);
