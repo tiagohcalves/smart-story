@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { RANGE } from '../config';
 
-const GoogleSheetData = ({ apiKey, sheetId, setTimelineItems }) => {
+const GoogleSheetData = ({ apiKey, sheetId, setTimelineItems, setFilteredItems }) => {
   const navigate = useNavigate();
 
   const rowIndex = {
@@ -15,6 +15,7 @@ const GoogleSheetData = ({ apiKey, sheetId, setTimelineItems }) => {
     "FILE": 4,
     "URL": 5,
     "COMMENT": 6,
+    "COR": 7
   }
 
   function toDate(dateString) {
@@ -44,9 +45,11 @@ const GoogleSheetData = ({ apiKey, sheetId, setTimelineItems }) => {
           type: row[rowIndex["TYPE"]],
           prof: row[rowIndex["PROFESSIONAL"]],
           file: row[rowIndex["FILE"]],
-          comment: row[rowIndex["COMMENT"]]
+          comment: row[rowIndex["COMMENT"]],
+          color: row[rowIndex["COR"]]
         })).sort((a, b) => a["dt"] > b["dt"] ? -1 : (a["dt"] < b["dt"] ? 1 : 0));
         setTimelineItems(data);
+        setFilteredItems(data);
       } else {
         navigate("/smart-story")
       }

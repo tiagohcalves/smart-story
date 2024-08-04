@@ -36,14 +36,14 @@ const ContactList = ({ apiKey, sheetId }) => {
         minHeight="100vh"
       >
         <Typography variant="h4" gutterBottom>
-          Doctors Contact List
+          Lista de contatos dos Médicos
         </Typography>
         <List>
           {contacts.map((contact, index) => (
             <ListItem key={index}>
               <ListItemText
                 primary={contact.name}
-                secondary={`${contact.expertise} - ${contact.phone}`}
+                secondary={`${contact.expertise}`}
               />
             </ListItem>
           ))}

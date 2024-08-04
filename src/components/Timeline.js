@@ -1,7 +1,7 @@
 // src/components/Home.js
 import React, { useState } from 'react';
 import GoogleSheetData from './GoogleSheetData';
-import { Container, Box, Fab } from '@mui/material'
+import { Container, Box, Fab, TextField } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add';
 import { Timeline as PrimeTimeline } from 'primereact/timeline';
 import "primereact/resources/themes/lara-light-cyan/theme.css";
@@ -19,8 +19,21 @@ const style = {
 
 const Timeline = ({apiKey, sheetId}) => {
     const [timelineItems, setTimelineItems] = useState([]);
+    const [filteredItems, setFilteredItems] = useState([]);
+    const [searchTerm, setSearchTerm] = useState([]);
 
-    const customizedMarker = (item) => {
+    function filterEvents(search) {
+        setSearchTerm(search)
+        if (!search) {
+            setFilteredItems(timelineItems);
+        } else {
+            setFilteredItems(timelineItems.filter(item => {
+                return search ? Object.values(item).some(value => value.toString().toLowerCase().includes(search.toLowerCase())) : true;
+            }));
+        }
+    }
+
+    const customizedOpposite = (item) => {
         return (
             // <span className="flex w-2rem h-2rem align-items-center justify-content-center text-white border-circle z-1 shadow-1" style={{ backgroundColor: item.color }}>
             //     <i className={item.icon}></i>
@@ -32,6 +45,12 @@ const Timeline = ({apiKey, sheetId}) => {
         );
     };
 
+    const customizedMarker = (item) => {
+        return (
+            <div className='p-timeline-event-marker' style={{ border: "2px solid " + item.color }}></div>
+        )
+    }
+
     const customizedContent = (item) => {
         return (
             // <Card subTitle={item.date}>
@@ -40,7 +59,7 @@ const Timeline = ({apiKey, sheetId}) => {
                 gap={4}
                 p={1}
             >{item.prof}
-                <p><small>{item.comment}</small> {item.file && <a href={item.file}  target="_blank" rel="noreferrer"> <i className="pi pi-download"></i> </a> }</p></Box>
+                <p><small>{item.comment}</small> {item.file && <a href={item.file}  target="_blank" rel="noreferrer"> <i className="pi pi-eye"></i> </a> }</p></Box>
                 
             // </Card>
         );
@@ -48,7 +67,7 @@ const Timeline = ({apiKey, sheetId}) => {
 
     return (
         <div>
-            <GoogleSheetData apiKey={apiKey} sheetId={sheetId} setTimelineItems={setTimelineItems} />
+            <GoogleSheetData apiKey={apiKey} sheetId={sheetId} setTimelineItems={setTimelineItems} setFilteredItems={setFilteredItems} />
             <Container maxWidth="md">
             <Fab 
                 style={style} 
@@ -60,6 +79,15 @@ const Timeline = ({apiKey, sheetId}) => {
                 <AddIcon />
             </Fab>
             
+            <TextField
+                label="Busca"
+                variant="outlined"
+                fullWidth
+                margin="normal"
+                value={searchTerm}
+                onChange={(e) => filterEvents(e.target.value)}
+            />
+
             <Box
               display="flex"
               flexDirection="column"
@@ -68,7 +96,7 @@ const Timeline = ({apiKey, sheetId}) => {
               minHeight="100vh"
             >
                 <div className="card">
-                    <PrimeTimeline value={timelineItems} opposite={customizedMarker} content={customizedContent} />
+                    <PrimeTimeline value={filteredItems ? filteredItems : timelineItems} opposite={customizedOpposite} marker={customizedMarker} content={customizedContent} />
                 </div>
             </Box>
             </Container>
