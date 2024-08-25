@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/smart-story/static/css/main.64f35c50.css",
-    "main.js": "/smart-story/static/js/main.3444f232.js",
+    "main.js": "/smart-story/static/js/main.76c0ef5e.js",
     "static/js/453.36f43780.chunk.js": "/smart-story/static/js/453.36f43780.chunk.js",
     "static/media/Inter-italic.var.woff2?v=3.19": "/smart-story/static/media/Inter-italic.var.184ec460d45b3caf5b0b.woff2",
     "static/media/Inter-roman.var.woff2?v=3.19": "/smart-story/static/media/Inter-roman.var.71b058b66381db72226b.woff2",
@@ -12,11 +12,11 @@
     "static/media/primeicons.woff2": "/smart-story/static/media/primeicons.024b32cc7bf399b1a847.woff2",
     "index.html": "/smart-story/index.html",
     "main.64f35c50.css.map": "/smart-story/static/css/main.64f35c50.css.map",
-    "main.3444f232.js.map": "/smart-story/static/js/main.3444f232.js.map",
+    "main.76c0ef5e.js.map": "/smart-story/static/js/main.76c0ef5e.js.map",
     "453.36f43780.chunk.js.map": "/smart-story/static/js/453.36f43780.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.64f35c50.css",
-    "static/js/main.3444f232.js"
+    "static/js/main.76c0ef5e.js"
   ]
 }
