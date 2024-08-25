@@ -14,8 +14,17 @@ const GoogleSheetData = ({ apiKey, sheetId, setTimelineItems, setFilteredItems }
     "PROFESSIONAL": 3,
     "FILE": 4,
     "URL": 5,
-    "COMMENT": 6,
-    "COR": 7
+    "COMMENT": 6
+  }
+
+  const colorMap = {
+    "Consulta":	"#FF5733",
+    "Pedido":	"#33FF57",
+    "Exame":	"#3357FF",
+    "Evento":	"#FF33A1",
+    "Receita":	"#FFB733",
+    "Encaminhamento":	"#33FFF2",
+    "Diagnóstico":	"#D433FF"
   }
 
   function toDate(dateString) {
@@ -45,8 +54,8 @@ const GoogleSheetData = ({ apiKey, sheetId, setTimelineItems, setFilteredItems }
           type: row[rowIndex["TYPE"]],
           prof: row[rowIndex["PROFESSIONAL"]],
           file: row[rowIndex["FILE"]],
-          comment: row[rowIndex["COMMENT"]],
-          color: row[rowIndex["COR"]]
+          comment: row[rowIndex["COMMENT"]] ?? "",
+          color: colorMap[row[rowIndex["TYPE"]]] ?? "#CCCCCC"
         })).sort((a, b) => a["dt"] > b["dt"] ? -1 : (a["dt"] < b["dt"] ? 1 : 0));
         setTimelineItems(data);
         setFilteredItems(data);
