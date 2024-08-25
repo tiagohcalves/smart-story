@@ -28,7 +28,7 @@ const Timeline = ({apiKey, sheetId}) => {
             setFilteredItems(timelineItems);
         } else {
             setFilteredItems(timelineItems.filter(item => {
-                return search ? Object.values(item).some(value => value.toString().toLowerCase().includes(search.toLowerCase())) : true;
+                return search ? Object.values(item).some(value => value ? value.toString().toLowerCase().includes(search.toLowerCase()) : false) : true;
             }));
         }
     }
