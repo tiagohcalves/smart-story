@@ -1,7 +1,7 @@
 // src/components/Home.js
 import React, { useState } from 'react';
 import GoogleSheetData from './GoogleSheetData';
-import { Container, Box, Fab, TextField } from '@mui/material'
+import { CircularProgress, Container, Box, Fab, TextField } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add';
 import { Timeline as PrimeTimeline } from 'primereact/timeline';
 import "primereact/resources/themes/lara-light-cyan/theme.css";
@@ -96,7 +96,11 @@ const Timeline = ({apiKey, sheetId}) => {
               minHeight="100vh"
             >
                 <div className="card">
-                    <PrimeTimeline value={filteredItems ? filteredItems : timelineItems} opposite={customizedOpposite} marker={customizedMarker} content={customizedContent} />
+                    {timelineItems.length > 0 ? (
+                        <PrimeTimeline value={filteredItems ? filteredItems : timelineItems} opposite={customizedOpposite} marker={customizedMarker} content={customizedContent} />
+                    ) : (
+                        <CircularProgress />
+                    )}
                 </div>
             </Box>
             </Container>
