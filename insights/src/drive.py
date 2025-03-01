@@ -32,6 +32,6 @@ def download_folder(folder_id, destination):
 
 # Replace 'your_folder_id' with the actual folder ID and 'destination_path' with the desired download path
 folder_id = '14pQp9K1V4g5t1uu9O_lIIrKKkcO0l2FsuozFR8bvsEy80VyxLdZ0cdf5NpwBXu_eZpJrH5Gb'
-destination_path = './data'
+destination_path = '../data/drive_raw_data/'
 
 download_folder(folder_id, destination_path)
