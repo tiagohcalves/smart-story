@@ -6,9 +6,9 @@ import qdrant_client
 from qdrant_client.models import PointStruct
 import tiktoken  # For token estimation
 
-# Configure Gemini API
-# API_KEY = os.environ.get("GEMINI_API_KEY", "")
-# genai.configure(api_key="YOUR_GEMINI_API_KEY")
+from database.models.document import Document
+from database.connections.sqlite import SQLiteConnection
+from database.repositories.document_repository import DocumentRepository
 
 # Initialize Qdrant
 client = qdrant_client.QdrantClient(host="localhost", port=6333)
@@ -21,9 +21,7 @@ client.recreate_collection(
 )
 
 # Load JSON
-with open("../data/results.json", "r") as f:
-    documents = json.load(f)
-
+db = DocumentRepository(SQLiteConnection())
 # Tokenizer for chunking (assuming OpenAI tokenizer works similarly)
 tokenizer = tiktoken.get_encoding("cl100k_base")
 
@@ -57,10 +55,9 @@ points = []
 chunk_id = 0
 
 # Process documents
-for doc_id, doc in tqdm.tqdm(documents.items()):
-    doc_data = json.loads(doc)
-    text = doc_data["raw"]
-    chunks = chunk_text(text)
+documents = db.get_all()
+for doc in tqdm.tqdm(documents):
+    chunks = chunk_text(doc.get_content())
 
     for chunk in chunks:
         embedding = get_embedding(chunk)
@@ -71,7 +68,7 @@ for doc_id, doc in tqdm.tqdm(documents.items()):
             PointStruct(
                 id=chunk_id,
                 vector=embedding,
-                payload={"doc_id": doc_id, "text": chunk, "date": doc_data["date"]}
+                payload={"doc_id": doc.id, "text": chunk, "date": doc.timestamp}
             )
         )
         chunk_id += 1

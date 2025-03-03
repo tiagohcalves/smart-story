@@ -52,7 +52,7 @@ def chat(query):
         print("No relevant information found.")
     else:
         context = "\n\n".join(relevant_chunks)
-        print("Contexto: ", context)
+        print("Context: ", context)
         prompt = f"Use o seguinte contexto para responder a pergunta:\n\n{context}\n\Pergunta: {query}\nResposta:"
 
     response = model.generate_content(prompt)
